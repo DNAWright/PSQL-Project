@@ -27,3 +27,13 @@ CREATE TABLE hsaGenes (
 COPY hsaKegg (bio_sys_id, kegg_accession, pathway) FROM '/home/cigba/hsaKegg.txt' WITH (FORMAT CSV, DELIMITER '	');
 
 COPY hsaGenes (bio_sys_id, entrez_gene_id) FROM '/home/cigba/bioSys_hsaGenes.txt' WITH (FORMAT CSV, DELIMITER '	');
+
+
+/* appending gene name data to hsaGenes table */
+
+CREATE TABLE entrezID_geneName (
+	entrez_gene_id INTEGER PRIMARY KEY,
+	gene_name VARCHAR
+);
+
+COPY entrezID_geneName (entrez_gene_id, gene_name) FROM '/home/cigba/geneNames.txt' WITH (FORMAT CSV, DELIMITER '	');
